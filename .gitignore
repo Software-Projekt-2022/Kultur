@@ -4,36 +4,45 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+*.idea/modules.xml
+**.idea/jarRepositories.xml
+**.idea/compiler.xml
+**.idea/libraries/
 *.iws
 *.iml
 *.ipr
-.idea/*
+**.idea/
 
 ### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+*.apt_generated
+*.classpath
+*.factorypath
+*.project
+*.settings
+*.springBeans
+*.sts4-cache
 
 ### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
+*/nbproject/private/
+*/nbbuild/
+*/dist/
+*/nbdist/
+*/.nb-gradle/
+*build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+*.vscode/
 
 ### Mac OS ###
-.DS_Store
+*.DS_Store
+
+# Default ignored files
+**/shelf/
+**/workspace.xml
+# Editor-based HTTP Client requests
+**/httpRequests/
+# Datasource local storage ignored files
+**/dataSources/
+**/dataSources.local.xml

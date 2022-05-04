@@ -1,7 +1,5 @@
 package com.api.database;
 
-import jdk.vm.ci.meta.Local;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

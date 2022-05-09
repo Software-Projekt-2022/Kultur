@@ -48,7 +48,7 @@ public class Event {
         return max_people;
     }
 
-    public void addToDatabase() {
+    public int addToDatabase() {
         Connection conn = Database.getDBConnection();
         try {
             this.id = conn.createStatement().executeUpdate(
@@ -58,8 +58,9 @@ public class Event {
 
             conn.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            return -1;
         }
+        return 0;
     }
 
     public static Event getEventById(int id) {

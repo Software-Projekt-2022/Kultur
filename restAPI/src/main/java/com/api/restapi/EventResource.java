@@ -2,17 +2,13 @@ package com.api.restapi;
 
 import com.api.database.Event;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Path("/Event")
 public class EventResource {
-
 
     @GET
     @Produces("application/json")
@@ -54,4 +50,16 @@ public class EventResource {
         return builder.build();
     }
 
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response addEvent(Event event) {
+        Response.ResponseBuilder builder;
+        if (event.addToDatabase() == 0)
+            builder = Response.ok("added to Database");
+        else {
+            builder = Response.serverError();
+        }
+        return builder.build();
+    }
 }

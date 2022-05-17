@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-RUN MKDIR /www
+RUN mkdir /www
 COPY /docker/config/nginx/ /etc/nginx/
 COPY /web/ /www/
 

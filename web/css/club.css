@@ -1,0 +1,30 @@
+.club-element{
+    width: 10vw;
+    height: 10vw;
+}
+
+.card-header{
+    size: 20px;
+    background-color: #9c9c9c;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.card-element{
+    width:9vw;
+    overflow:hidden;
+    height:8vw;
+    line-height:20px;
+    text-overflow: ellipsis;
+}
+
+.padding-bottom{
+    padding-bottom: 5px;
+}
+
+.padding-top{
+    padding-top: 5px;
+}

@@ -4,7 +4,8 @@ let currentPage = "pages/home.html";
 let lastPage = "";
 let navStack = [];
 let disableNavigation = false;
-const api = "https://kultur.cyber-city.systems/api/v1";
+//const api = "https://kultur.cyber-city.systems/api/v1";
+const api = "http://localhost:8080/restAPI-1.0/api";
 const auth = "https://auth.cyber-city.systems/auth/token";
 const cccolor = '#ffa047';
 
@@ -151,7 +152,7 @@ function loadNavbar() {
     if(navbar.html() === "" || navbar.html() === undefined) {
        navbar.load("/navbar.html", () => {});
     } else {
-        console.log($("#navbar").html())
+        console.log($("#navbar").html()) 
     }
 }
 
@@ -181,6 +182,26 @@ function page(name) {
             loadPage("pages/home.html");
             window.history.replaceState(null, null, "/#home");
             lastPage = "home";
+        break;
+        case "club-home":
+            loadPage("pages/club.html");
+            window.history.replaceState(null, null, "/#club-home");
+            lastPage = "club";
+        break;
+        case "chat":
+            loadPage("pages/chat.html");
+            window.history.replaceState(null, null, "/#chat");
+            lastPage = "chat";
+        break;
+        case "library":
+            loadPage("pages/library.html");
+            window.history.replaceState(null, null, "/#library");
+            lastPage = "library";
+        break;
+        case "cityMap":
+            loadPage("pages/cityMap.html");
+            window.history.replaceState(null, null, "/#cityMap");
+            lastPage = "cityMap";
         break;
         case "account":
             loadPage("pages/account.html");

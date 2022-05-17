@@ -1,0 +1,24 @@
+#left-sidebar {
+    min-width: 200px;
+    max-width: 300px;
+    height: 100%;
+
+}
+
+
+.font-main-color{
+    color: #102542;
+}
+.font-second-color{
+    color: #f87060; 
+}
+.font-third-color{
+    color: #292929;
+}
+.font-fourth-color{
+    color: #f7fff7;
+}
+
+.bg-main-color{
+    background-color: #102542;
+}

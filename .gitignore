@@ -1,17 +1,17 @@
-target/
+/restAPI/target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
-**.idea/*
+/restAPI/.idea/modules.xml
+/restAPI/.idea/jarRepositories.xml
+/restAPI/.idea/compiler.xml
+/restAPI/.idea/libraries/
+/restAPI/*.iws
+/restAPI/*.iml
+/restAPI/*.ipr
+/restAPI/**.idea/*
 
 ### Eclipse ###
 .apt_generated

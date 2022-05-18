@@ -9,6 +9,7 @@
 
 .card-header{
     size: 20px;
+    min-width: 170px;
     background-color: #9c9c9c;
     border-radius: 5px;
     padding: 5px;
@@ -18,9 +19,9 @@
 }
 
 .card-element{
-    min-height: 15px;
+    min-height: 200px;
     max-height: 500px;
-    width:9vw;
+    min-width: 170px;
     overflow:hidden;
     height:8vw;
     line-height:20px;

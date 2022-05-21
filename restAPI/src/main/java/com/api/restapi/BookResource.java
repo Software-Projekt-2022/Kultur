@@ -75,5 +75,13 @@ public class BookResource {
         return builder.build();
     }
 
+    @Path("/new")
+    @GET
+    @Produces("application/json")
+    public Response getNew() {
+        Response.ResponseBuilder builder = Response.ok(Book.getNew());
+        return builder.build();
+    }
+
 
 }

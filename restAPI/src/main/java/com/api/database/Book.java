@@ -207,6 +207,23 @@ public class Book {
     }
 
     /**
+     * gets a list of books added in the last week
+     * @return list of books
+     */
+    public static ArrayList<Book> getNew(){
+        ArrayList<Book> books = new ArrayList<>();
+        Connection conn = Database.getDBConnection();
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM book WHERE date_trunc('week',release_date) = date_trunc('week',now())");
+            iterateResultSet(books, rs);
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
+    /**
      * fetches all books from the database
      * @return an arraylist of all books
      */

@@ -9,7 +9,7 @@ public class Database {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    .getConnection("jdbc:postgresql://kulturdb:5432",
                             "postgres", "admin");
         } catch (Exception e) {
             e.printStackTrace();

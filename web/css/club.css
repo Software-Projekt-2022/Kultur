@@ -1,10 +1,15 @@
 .club-element{
+    min-width: 150px;
+    max-width: 500px;
+    min-height: 15px;
+    max-height: 500px;
     width: 10vw;
     height: 10vw;
 }
 
 .card-header{
     size: 20px;
+    min-width: 170px;
     background-color: #9c9c9c;
     border-radius: 5px;
     padding: 5px;
@@ -14,7 +19,9 @@
 }
 
 .card-element{
-    width:9vw;
+    min-height: 200px;
+    max-height: 500px;
+    min-width: 170px;
     overflow:hidden;
     height:8vw;
     line-height:20px;

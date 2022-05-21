@@ -1,27 +1,30 @@
 <ccstyle src="css/index.css"></ccstyle>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand font-second-color" href="javascript:page('home')">Cybercity Kultur</a>
+		<a class="navbar-brand font-second-color" href="javascript:page('home')">Cybercity Kultur</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#kulturNavbar" aria-controls="kulturNavbar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="kulturNavbar">
+			<ul class="navbar-nav me-auto mb-0">
+				<li class="nav-item">
+					<a class="nav-link font-second-color" href="javascript:page('home')"><i class="fa fa-search font-second-color"></i> Home</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle font-second-color" data-bs-toggle="dropdown">Vereine</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item font-second-color" href="javascript:page('club-home')">Home</a>
+						<a class="dropdown-item font-second-color" href="javascript:page('club-search')">Vereine finden</a>
+						<a class="dropdown-item font-second-color" href="javascript:page('club-chat')">Chats</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link font-second-color" href="javascript:page('library')"><i class="fa fa-user font-second-color"></i> Bücherei</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link font-second-color" href="javascript:page('cityMap')"><i class="fa fa-user font-second-color"></i> Stadtplan</a>
+				</li>
+			</ul>
 		</div>
-		<ul class="navbar-nav me-auto mb-0">
-			<li class="nav-item">
-				<a class="nav-link font-second-color" href="javascript:page('home')"><i class="fa fa-search font-second-color"></i> Home</a>
-			</li>
-			<li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle font-second-color" data-bs-toggle="dropdown">Vereine</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item font-second-color" href="javascript:page('club-home')">Home</a>
-                    <a class="dropdown-item font-second-color" href="javascript:page('club-search')">Vereine finden</a>
-                    <a class="dropdown-item font-second-color" href="javascript:page('club-chat')">Chats</a>
-                </div>
-            </li>
-            <li class="nav-item">
-				<a class="nav-link font-second-color" href="javascript:page('library')"><i class="fa fa-user font-second-color"></i> Bücherei</a>
-			</li>
-            <li class="nav-item">
-				<a class="nav-link font-second-color" href="javascript:page('cityMap')"><i class="fa fa-user font-second-color"></i> Stadtplan</a>
-			</li>
-		</ul>
 	</div>
 </nav>

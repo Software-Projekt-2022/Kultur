@@ -65,7 +65,9 @@ jobs:
 
   deploy:
     runs-on: ubuntu-20.04
-    needs: build_and_push
+    needs:
+      - build_and_push_backend
+      - build_and_push_frontend
 
     steps:
       - name: Stop running docker

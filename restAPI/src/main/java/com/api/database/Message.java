@@ -10,33 +10,17 @@ public class Message {
 
     private int id;
     private String content;
-    private LocalDateTime date;
+    private String date;
     private int chat_id;
     //private User sender;
 
     public Message() {
     }
 
-    public Message(int chat_id, String content, LocalDateTime date) {
+    public Message(int chat_id, String content, String date) {
         this.chat_id = chat_id;
         this.content = content;
         this.date = date;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public int getChatId() {
-        return chat_id;
     }
 
     public void addToDatabase() {
@@ -60,7 +44,7 @@ public class Message {
                 Message message = new Message();
                 message.id = rs.getInt("id");
                 message.content = rs.getString("content");
-                message.date = rs.getTimestamp("date").toLocalDateTime();
+                message.date = rs.getTimestamp("date").toString();
                 return message;
             }
         } catch (SQLException e) {
@@ -78,7 +62,7 @@ public class Message {
                 Message message = new Message();
                 message.id = rs.getInt("id");
                 message.content = rs.getString("content");
-                message.date = rs.getTimestamp("date").toLocalDateTime();
+                message.date = rs.getTimestamp("date").toString();
                 messages.add(message);
             }
             conn.close();
@@ -88,5 +72,36 @@ public class Message {
         return messages;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setChat_id(int chat_id) {
+        this.chat_id = chat_id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public int getChatId() {
+        return chat_id;
+    }
 
 }

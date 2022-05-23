@@ -1,10 +1,18 @@
 package com.api.database;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Book {
+public class Book implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String description;
@@ -12,14 +20,14 @@ public class Book {
     private String publisher;
     private String category;
     private String language;
-    private Date releaseDate;
+    private String releaseDate;
     private BorrowStatus status;
     //private User borrowedBy;
 
     public Book() {
     }
 
-    public Book(String title, String description, String author, String publisher, String category, String language, Date releaseDate, BorrowStatus status) {
+    public Book(String title, String description, String author, String publisher, String category, String language, String releaseDate, BorrowStatus status) {
         this.title = title;
         this.description = description;
         this.author = author;
@@ -33,12 +41,16 @@ public class Book {
     public void addToDatabase() {
         Connection conn = Database.getDBConnection();
         try {
-            this.id = conn.createStatement().executeUpdate(
-                    "INSERT INTO book (title, description, author, publisher, category, language, release_date, status) " +
-                    "VALUES ('" + title + "', '" + description + "', '" + author + "', '" + publisher + "', '" + category + "', '" + language + "', '" + releaseDate + "', '" + status + "') " +
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(
+                    "INSERT INTO book (title, description, author, publisher, category, language, releaseDate, status) " +
+                    "VALUES ('" + title + "', '" + description + "', '" + author + "', '" + publisher + "', '" + category + "', '" + language + "', '" + LocalDateTime.parse(releaseDate) + "', '" + status + "') " +
                             "RETURNING id");
-
+            if (rs.next()) {
+                this.id = rs.getInt("id");
+            }
             conn.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,13 +88,13 @@ public class Book {
         while (rs.next()) {
             Book book = new Book();
             book.id = rs.getInt("id");
-            book.title = rs.getString("name");
+            book.title = rs.getString("title");
             book.description = rs.getString("description");
             book.author = rs.getString("author");
             book.publisher = rs.getString("publisher");
             book.category = rs.getString("category");
             book.language = rs.getString("language");
-            book.releaseDate = rs.getDate("release_date");
+            book.releaseDate = rs.getDate("releaseDate").toString();
             book.status = BorrowStatus.getById(rs.getInt("status"));
             books.add(book);
         }
@@ -157,7 +169,7 @@ public class Book {
         ArrayList<Book> books = new ArrayList<>();
         Connection conn = Database.getDBConnection();
         try {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM book WHERE release_date = '" + releaseDate + "'");
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM book WHERE releaseDate = '" + releaseDate + "'");
             iterateResultSet(books, rs);
             conn.close();
         } catch (Exception e) {
@@ -171,7 +183,7 @@ public class Book {
         Connection conn = Database.getDBConnection();
         Timestamp ts = new Timestamp(year, 1, 1, 0, 0, 0, 0);
         try {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM book WHERE date_trunc('year',release_date) = '" + ts + "'");
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM book WHERE date_trunc('year',releaseDate) = '" + ts + "'");
             iterateResultSet(books, rs);
             conn.close();
         } catch (Exception e) {
@@ -196,7 +208,7 @@ public class Book {
             book.publisher = conn.createStatement().executeQuery("SELECT publisher FROM book WHERE id = " + id).getString("publisher");
             book.category = conn.createStatement().executeQuery("SELECT category FROM book WHERE id = " + id).getString("category");
             book.language = conn.createStatement().executeQuery("SELECT language FROM book WHERE id = " + id).getString("language");
-            book.releaseDate = conn.createStatement().executeQuery("SELECT release_date FROM book WHERE id = " + id).getDate("release_date");
+            book.releaseDate = conn.createStatement().executeQuery("SELECT releaseDate FROM book WHERE id = " + id).getDate("releaseDate").toString();
             book.status = BorrowStatus.getById(conn.createStatement().executeQuery("SELECT status FROM book WHERE id = " + id).getInt("status"));
             conn.close();
             return book;
@@ -214,7 +226,7 @@ public class Book {
         ArrayList<Book> books = new ArrayList<>();
         Connection conn = Database.getDBConnection();
         try {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM book WHERE date_trunc('week',release_date) = date_trunc('week',now())");
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM book WHERE date_trunc('week',releaseDate) = date_trunc('week',now())");
             iterateResultSet(books, rs);
             conn.close();
         } catch (Exception e) {
@@ -234,9 +246,80 @@ public class Book {
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM book");
             iterateResultSet(books, rs);
             conn.close();
+            System.out.println("Books fetched");
+            System.out.println(books.get(0).title);
             return books;
         } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+            ex.printStackTrace();
         }
+        return null;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setStatus(BorrowStatus status) {
+        this.status = status;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
     }
 }

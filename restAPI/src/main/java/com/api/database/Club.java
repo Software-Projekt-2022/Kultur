@@ -1,12 +1,20 @@
 package com.api.database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.sql.*;
 import java.util.ArrayList;
 
-public class Club {
+@XmlRootElement
+public class Club implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String description;
@@ -45,7 +53,8 @@ public class Club {
     public void addToDatabase() {
         Connection conn = Database.getDBConnection();
         try {
-            this.id = conn.createStatement().executeUpdate(
+            Statement statement = conn.createStatement();
+            this.id = statement.executeUpdate(
                     "INSERT INTO club (name, description, place, logo_path, cost, category) " +
                     "VALUES ('" + name + "', '" + description + "', '" + place + "', '" + logoPath + "', '" + cost + "', '" + category + "') " +
                             "RETURNING id");
@@ -95,25 +104,81 @@ public class Club {
         }
     }
 
-    public static Club getClubById(int id) {
+    public static ArrayList<Club> getClubById(int id) {
         Connection conn = Database.getDBConnection();
-        Club club = null;
+        ArrayList<Club> clubs = new ArrayList<>();
         try {
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM club WHERE id = " + id);
-            while (rs.next()) {
-                club = new Club();
-                club.id = rs.getInt("id");
-                club.name = rs.getString("name");
-                club.description = rs.getString("description");
-                club.place = rs.getString("place");
-                club.logoPath = rs.getString("logo_path");
-                club.cost = rs.getString("cost");
-                club.category = rs.getString("category");
-            }
+            iterateResultSet(clubs, rs);
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return club;
+        return clubs;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setChat(ArrayList<Chat> chat) {
+        this.chat = chat;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
+    }
+
+    public void setLogoPath(String logoPath) {
+        this.logoPath = logoPath;
+    }
+
+    public void setMeetings(ArrayList<Event> meetings) {
+        this.meetings = meetings;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public String getLogoPath() {
+        return logoPath;
+    }
+
+    public String getPlace() {
+        return place;
     }
 }

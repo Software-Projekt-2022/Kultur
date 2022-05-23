@@ -1,10 +1,13 @@
 package com.api.database;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class Place {
+public class Place implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private int id;
     private String name;
@@ -201,5 +204,157 @@ public class Place {
             e.printStackTrace();
         }
         return places;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public void setRatingCount(String ratingCount) {
+        this.ratingCount = ratingCount;
+    }
+
+    public void setRatingAvg(String ratingAvg) {
+        this.ratingAvg = ratingAvg;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public String getRatingAvg() {
+        return ratingAvg;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public String getRatingCount() {
+        return ratingCount;
+    }
+
+    public String getZip() {
+        return zip;
     }
 }

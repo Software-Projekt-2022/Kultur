@@ -2,11 +2,9 @@ package com.api.restapi;
 
 import com.api.database.Book;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 
 @Path("/Book")
 public class BookResource {
@@ -15,8 +13,18 @@ public class BookResource {
     @GET
     @Produces("application/json")
     public Response get() {
-        Response.ResponseBuilder builder = Response.ok(Book.getList());
+        ArrayList<Book> list = Book.getList();
+        System.out.println("list: " + list.get(0).getTitle());
+        Response.ResponseBuilder builder = Response.ok(list);
         return builder.build();
+    }
+
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response post(Book book) {
+        book.addToDatabase();
+        return Response.ok(book).build();
     }
 
     @Path("/id/{id}")

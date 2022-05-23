@@ -1,9 +1,11 @@
 package com.api.database;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 
 public enum BorrowStatus {
+
     BORROWED(0, "Borrowed"),
     RETURNED(1, "Returned"),
     OVERDUE(2, "Overdue"),

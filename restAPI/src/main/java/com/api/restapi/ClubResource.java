@@ -2,11 +2,10 @@ package com.api.restapi;
 
 import com.api.database.Club;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 
 @Path("/Club")
 public class ClubResource {
@@ -14,7 +13,8 @@ public class ClubResource {
     @GET
     @Produces("application/json")
     public Response get() {
-        Response.ResponseBuilder builder = Response.ok(Club.getList());
+        ArrayList<Club> list = Club.getList();
+        Response.ResponseBuilder builder = Response.ok(list);
         return builder.build();
     }
 
@@ -41,5 +41,14 @@ public class ClubResource {
     public Response getCategory(@PathParam("category") String category) {
         Response.ResponseBuilder builder = Response.ok(Club.getClubsByCategory(category));
         return builder.build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response post(Club club) {
+        club.addToDatabase();
+        Response.ResponseBuilder rb = Response.ok(club);
+        return rb.build();
     }
 }

@@ -53,10 +53,10 @@ public class EventResource {
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public Response addEvent(Event event) {
+    public Response post(Event event) {
         Response.ResponseBuilder builder;
-        if (event.addToDatabase() == 0)
-            builder = Response.ok("added to Database");
+        if (event.addToDatabase() != -1)
+            builder = Response.ok(event);
         else {
             builder = Response.serverError();
         }

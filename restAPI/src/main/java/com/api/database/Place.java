@@ -57,9 +57,9 @@ public class Place implements Serializable {
         Connection conn = Database.getDBConnection();
         try {
             this.id = conn.createStatement().executeUpdate(
-                    "INSERT INTO place (name, address, city, state, zip, country, phone, website, latitude, longitude, category, image, description, hours, price, rating, rating_count, rating_avg) " +
-                    "VALUES ('" + name + "', '" + address + "', '" + city + "', '" + state + "', '" + zip + "', '" + country + "', '" + phone + "', '" + website + "', '" + latitude + "', '" + longitude + "', '" + category + "', '" + image + "', '" + description + "', '" + hours + "', '" + price + "', '" + rating + "', '" + ratingCount + "', '" + ratingAvg + "') " +
-                            "RETURNING id");
+                    "INSERT INTO coordinates (latitude, longitude) " +
+                    "VALUES ('" + latitude + "', '" + longitude + "') " +
+                            "RETURNING coordinates_id");
 
             conn.close();
         } catch (Exception e) {

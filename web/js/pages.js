@@ -5,7 +5,7 @@ let lastPage = "";
 let navStack = [];
 let disableNavigation = false;
 const api = "http://kultur_ba:8000/restAPI-1.0/api/";
-//const api = "http://localhost:8080/restAPI-1.0/api";
+//const api = "http://localhost:8080/restAPI-1.0/api/";
 const auth = "https://auth.cyber-city.systems/auth/token";
 const cccolor = '#ffa047';
 

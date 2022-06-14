@@ -24,3 +24,5 @@ function clubListFactory(data){
     <div class="club-description">${data.description}</div>`;
     document.getElementById("clubList").appendChild(club);
 }
+
+getClubs();

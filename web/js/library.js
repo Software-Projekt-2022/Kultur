@@ -6,7 +6,7 @@ function getBooks(){
         success: function (data) {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
-                //bookListFactory(data[i]);
+                bookListFactory(data[i]);
             }
         },
         error: function (data) {
@@ -23,7 +23,7 @@ function getNewBooks(){
         success: function (data) {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
-                bookListFactory(data[i]);
+                bookListFactory(data[i], "newBooks");
             }
         },
         error: function (data) {
@@ -32,12 +32,17 @@ function getNewBooks(){
     });
 }
 
-function bookListFactory(data){
+function bookListFactory(data, id = "bookList"){
     /* creates book elements in the html page in the div with id bookList */
     let book = document.createElement("div");
     book.className = "book row";
     book.id = "book-" + data.id;
     book.innerHTML = `<div class="book-name">${data.name}</div>
     <div class="book-description">${data.description}</div>`;
-    document.getElementById("bookList").appendChild(book);
+    let list = document.getElementById(id);
+    list.innerHTML = "";
+    list.appendChild(book);
 }
+
+getBooks();
+getNewBooks();

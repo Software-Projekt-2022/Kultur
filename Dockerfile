@@ -1,8 +1,7 @@
 FROM nginx:latest
 
-RUN mkdir /www
 COPY /docker/config/nginx/ /etc/nginx/
-COPY /web/ /www/
+COPY /web/ /usr/share/nginx/html
 
 EXPOSE 80 80
 ENTRYPOINT [ "nginx" ]

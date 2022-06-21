@@ -1,14 +1,9 @@
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
-#	listen 443 ssl default_server;
-#	listen [::]:443 ssl default_server;
-	
-	ssl_certificate /etc/nginx/ssl/localhost.crt.pem;
-	ssl_certificate_key /etc/nginx/ssl/localhost.key.pem;
-	
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
 
-#	root /mnt/s/Studium/TerminplanWebApp/web;
     root /www;
 	
 	location / {

@@ -18,7 +18,7 @@ function start() {
 function redirectWithoutToken(){
     //enableNavBack();
     navStack = [];
-    if(window.location.href.split("#").length > 0) {
+    if(window.location.href.split("#").length > 1) {
         let hash = window.location.href.split("#", 2)[1];
         console.log(hash);
         page(hash);

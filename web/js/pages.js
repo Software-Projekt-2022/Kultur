@@ -4,8 +4,8 @@ let currentPage = "pages/home.html";
 let lastPage = "";
 let navStack = [];
 let disableNavigation = false;
-const api = "http://kultur_ba:8000/restAPI-1.0/api/";
-//const api = "http://localhost:8080/restAPI-1.0/api/";
+//const api = "http://kultur_ba:8000/restAPI-1.0/api/";
+const api = "http://localhost:8080/api/v1/";
 const auth = "https://auth.cyber-city.systems";
 const cccolor = '#ffa047';
 

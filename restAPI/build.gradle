@@ -32,6 +32,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
+    implementation 'com.rabbitmq:amqp-client:5.14.2'
+    implementation 'com.google.code.gson:gson:2.9.0'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

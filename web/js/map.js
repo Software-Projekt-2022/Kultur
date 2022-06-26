@@ -20,13 +20,15 @@ L.marker([52.296,8.905]).addTo(map)
 function getPlaces(){
     /* makes an ajax request to api and gets relevant places */
     $.ajax({
-        url: api + "Place",
+        url: api + "Contact",
         method: "GET",
         dataType: "json",
         success: function (data) {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
-                L.marker([data[i].latitude,data[i].longitude]).addTo(map)
+                let lat = data[i].address.coordinates.latitude;
+                let lng = data[i].address.coordinates.longitude;
+                L.marker([lat ,lng]).addTo(map)
                     .bindPopup(data[i].name)
                     .openPopup();
             }
@@ -36,3 +38,5 @@ function getPlaces(){
         }
     });
 }
+
+getPlaces();

@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-COPY /docker/config/nginx/ /etc/nginx/
+COPY /docker/nginx.conf /etc/nginx/nginx.conf
 COPY /web/ /usr/share/nginx/html
 
 EXPOSE 80 80

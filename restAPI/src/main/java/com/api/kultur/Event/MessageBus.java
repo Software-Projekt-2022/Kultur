@@ -21,7 +21,6 @@ public class MessageBus {
 
     public static void main() throws IOException, TimeoutException {
         createConnection();
-        sendEvent(makeEvent());
         listenForEvents();
     }
 

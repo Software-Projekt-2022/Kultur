@@ -1,13 +1,17 @@
 app:
   name: "Kultur API"
+  description: "Rest API for Kultur website"
 server:
   port: 8080
   address: 0.0.0.0
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Kultur
-    username: ${CJ_USER}
-    password: ${CJ_PW}
+    #url: jdbc:postgresql://localhost:5432/Kultur
+    #username: postgres
+    #password: admin
+    url: jdbc:postgresql://${CC_HOST}:${CC_PORT}/${CC_DB}
+    username: ${CC_USER}
+    password: ${CC_PW}
   jpa:
     hibernate:
       ddl-auto: create

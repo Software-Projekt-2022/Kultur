@@ -12,6 +12,7 @@
 /restAPI/*.iml
 /restAPI/*.ipr
 /restAPI/**.idea/*
+/restAPI/.idea
 
 ### Eclipse ###
 .apt_generated

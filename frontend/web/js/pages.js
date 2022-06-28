@@ -6,7 +6,7 @@ let navStack = [];
 let disableNavigation = false;
 const api = "https://kultur.cyber-city.systems/api/v1/";
 //const api = "http://localhost:8080/api/v1/";
-const auth = "https://auth.cyber-city.systems";
+const auth = "https://auth.cyber-city.systems/api/";
 const cccolor = '#ffa047';
 
 function start() {
@@ -28,16 +28,26 @@ function redirectWithoutToken(){
 }
 
 function checkToken() {
-    let token = localStorage.getItem('token');
+    cookies = document.cookie.split(";");
+    token;
+    for(let i = 0; i < cookies.length; i ++) {
+        if(cookies[i].split("=")[0].trim() == "cybercity-auth") {
+            token = cookies[i].split("=")[1].replace("%20", " ");
+        }
+    }
     if (token) {
-        $.ajax(auth + "/check?token=" + token, {
+        $.ajax(auth + "validate_token", {
             method: "GET",
+            headers: {
+                "accept": "application/json",
+                "Authorization": token
+            },
             dataType: "json",
             success: function (data) {
-                if (data.status === "valid") {
+                if (data.code === "SUCCESS") {
                     disableNavBack();
                     navStack = [];
-                    if(window.location.href.split("#", 2).length > 0) {
+                    if(window.location.href.split("#").length > 1) {
                         let hash = window.location.href.split("#", 2)[1];
                         console.log(hash);
                         page(hash);
@@ -47,19 +57,19 @@ function checkToken() {
                 } else {
                     localStorage.removeItem("token");
                     enableNavBack();
-                    page("login");
+                    window.location.href = "https://cyber-city.systems/login?target=https://kultur.cyber-city.systems";
                     navStack = [];
                 }
             },
             error: function (data) {
                 enableNavBack();
-                page("login");
+                window.location.href = "https://cyber-city.systems/login?target=https://kultur.cyber-city.systems";
                 navStack = [];
             }
         });
     } else {
         enableNavBack();
-        page("login");
+        window.location.href = "https://cyber-city.systems/login?target=https://kultur.cyber-city.systems";
         navStack = [];
     }
 }
@@ -208,6 +218,13 @@ function page(name) {
             window.history.replaceState(null, null, "/#account");
             lastPage = "account";
             break;
+        case "logout":
+            cookies = document.cookie.split(";");
+            for(let i = 0; i < cookies.length; i ++) {
+                if(cookies[i].split("=")[0].trim() == "cybercity-auth") {
+                    dockument.cookie = cookies[i] + ";max-age=0";
+                }
+            }
     }
 }
 

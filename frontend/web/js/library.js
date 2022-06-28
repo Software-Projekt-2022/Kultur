@@ -44,5 +44,34 @@ function bookListFactory(data, id = "bookList"){
     list.appendChild(book);
 }
 
+$.ajax({
+    url: api + "Book",
+    method: "POST",
+    dataType: "json",
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    data: '{\
+        "id": 0,\
+        "title": "Es",\
+        "author": "Steven King kong",\
+        "description": "Es is toll",\
+        "status": "Neu",\
+        "publisher": "Verlag XY",\
+        "category": "Horror",\
+        "language": "DE",\
+        "releaseDate": "2022-06-28T12:21:40.953Z",\
+        "borrowedBy": {\
+          "id": 0\
+        }\
+      }',
+    success: function (data) {
+        console.log(data);
+    },
+    error: function (data) {
+        console.log(data);
+    }
+});
+
 getBooks();
 getNewBooks();

@@ -222,7 +222,8 @@ function page(name) {
             cookies = document.cookie.split(";");
             for(let i = 0; i < cookies.length; i ++) {
                 if(cookies[i].split("=")[0].trim() == "cybercity-auth") {
-                    dockument.cookie = cookies[i] + ";max-age=0";
+                    document.cookie = cookies[i] + ";max-age=0";
+                    document.href = "https://cyber-city.systems";
                 }
             }
     }
